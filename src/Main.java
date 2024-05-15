@@ -8,23 +8,38 @@ public class Main {
         Scanner userInputs = new Scanner(System.in);
         String userGuess;
 
-
-
         WordSelector chosenWord = new WordSelector();
+        UserGuesses userGuesses = new UserGuesses();
         chosenWord.setWord();
-        System.out.println(chosenWord.getWord());
+        chosenWord.setUnderscores();
 
+        System.out.println(chosenWord.getWord());
+        System.out.println(chosenWord.getUnderscores());
 
         System.out.println("Enter Letter");
-        userGuess = userInputs.nextLine();
+        userGuess = userInputs.nextLine().toLowerCase();
 
 
         if (userGuess.length() == 1) {
-            System.out.println("You have selected letter " + userGuess);
+            userGuesses.addAllLetters(userGuess);
+            if(chosenWord.getWord().toLowerCase().contains(userGuess)) {
+                System.out.println("You have selected letter " + userGuess + ", which is correct!");
+                int index = chosenWord.getWord().indexOf(userGuess);
+                System.out.println(index);
+                while(index >= 0){
+                    System.out.println(index);
+                    index = chosenWord.getWord().indexOf(userGuess, index+1);
+                    String newView = chosenWord.getUnderscores().substring(0,index) + " " + userGuess;
+                    System.out.println(newView);
+                }
+
+            } else {
+                System.out.println("You have selected letter " + userGuess + ", which is incorrect.");
+            }
         } else  {
             System.out.println("Please only type one letter");
         }
-
-
     }
+
+
 }
