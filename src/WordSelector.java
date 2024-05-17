@@ -1,7 +1,6 @@
-//import java.util.Math;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 public class WordSelector {
     private String word;
@@ -13,25 +12,20 @@ public class WordSelector {
         return word;
     }
 
-    public void setWord() {
-        int selectedNumber = getRandomNumber();
-        this.word = words[selectedNumber];
-    }
-
     public void setUnderscores() {
         int numberOfLetters = word.length();
-        String underscore = "_ ";
+        String underscore = "_";
         this.underscores = underscore.repeat(numberOfLetters);
         }
-
 
     public String getUnderscores() {
         return underscores;
     }
 
-    public int getRandomNumber() {
+    public void setWord() {
         int min=0, max=9;
-        return (int)(Math.random()*((max-min)+1))+min;
+        int selectedNumber = (int)(Math.random()*((max-min)+1))+min;
+        this.word = words[selectedNumber];
     }
 
 }
