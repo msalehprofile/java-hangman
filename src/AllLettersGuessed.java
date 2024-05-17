@@ -9,14 +9,7 @@ public class AllLettersGuessed {
     }
 
     public ArrayList<Character> getAllLettersGuessed() {
-//        System.out.println(allLettersGuessed);
         return allLettersGuessed;
-    }
-
-    public void listLettersGuessed() {
-        for(char letter: allLettersGuessed) {
-
-        }
     }
 
 }

@@ -1,7 +1,6 @@
 
 import java.util.Random;
 
-
 public class WordSelector {
     private String word;
     private String underscores;
