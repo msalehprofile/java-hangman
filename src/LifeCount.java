@@ -1,15 +1,12 @@
 public class LifeCount {
-    private int LifeCount = 9;
+    private int LifeCount;
 
-    public String getLifeCount() {
-        return "You have " + LifeCount + " lives left";
+    public int getLifeCount() {
+        return LifeCount;
     }
 
     public void setLifeCount(int lifeCount) {
         LifeCount = lifeCount;
     }
 
-    public int lifeLost() {
-        return LifeCount - 1;
-    }
 }

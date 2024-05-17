@@ -7,33 +7,41 @@ public class GameLogic {
     private static List lettersGuessed;
     private static char userGuess;
     private static String userInput;
+    private static int lifeCount;
+    private static GameStatus gameFinished;
 
 
     public static void main(String[] args) {
         WordSelector chosenWord = new WordSelector();
+        LifeCount newGameLives = new LifeCount();
+        newGameLives.setLifeCount(9);
         chosenWord.setWord();
         chosenWord.setUnderscores();
 
         word = chosenWord.getWord();
         underscores = chosenWord.getUnderscores();
+        lifeCount = newGameLives.getLifeCount();
 
+
+    }
+
+    public static void gameStart() {
         System.out.println(word);
-
+        System.out.println();
+        System.out.println("You have "+ lifeCount + " lives to start.");
         System.out.println("Please guess the word below:");
         System.out.println(underscores);
         System.out.println();
-
-
         gameLogic();
     }
 
 
-public static void test() {
-    System.out.println(word);
-}
-
     public static void gameLogic( ) {
+
+
         AllLettersGuessed allLettersGuessed = new AllLettersGuessed();
+
+
         while(true) {
             System.out.println("Enter your guess below:");
             Scanner userInputs = new Scanner(System.in);
@@ -47,17 +55,22 @@ public static void test() {
         }
 
         if (userInput.length() == 1) {
-            allLettersGuessed.addAllLetters(userGuess);
-            allLettersGuessed.listLettersGuessed();
-            lettersGuessed = allLettersGuessed.getAllLettersGuessed();
-            System.out.println("So far you have guessed: " + lettersGuessed);
 
-            if(lettersGuessed.contains(userInput) ) {
+            lettersGuessed = allLettersGuessed.getAllLettersGuessed();
+
+            System.out.println();
+
+            if(lettersGuessed.contains(userGuess) ) {
                 System.out.println("You have already guessed that letter");
                 System.out.println();
+            } else {
+                allLettersGuessed.addAllLetters(userGuess);
+                allLettersGuessed.listLettersGuessed();
             }
 
+            System.out.println("So far you have guessed: " + lettersGuessed);
 
+            boolean gameFinished = true;
             if (word.toLowerCase().contains(userInput)) {
                 System.out.println("You have selected letter " + userGuess + ", which is correct!");
                 System.out.println();
@@ -67,14 +80,32 @@ public static void test() {
                         System.out.print(currentChar);
                     } else {
                         System.out.print("_");
-                        System.out.println();
+                        gameFinished = false;
                     };
                 }
 
+                if (gameFinished) {
+                    GameStatus.completedWord(lifeCount, word);
+                    System.out.println();
+                    System.out.println("Would you like to play again? (Y/N)");
 
+
+                }
+
+                System.out.println();
 
             } else {
                 System.out.println("You have selected letter " + userGuess + ", which is incorrect.");
+                System.out.println();
+                lifeCount -= 1;
+
+                if(lifeCount > 0) {
+                    System.out.println("You have " + lifeCount + " lives remaining.");
+                    System.out.println();
+                } else {
+                    GameStatus.allLivesLost();
+                    break;
+                }
 
             }
             }
