@@ -6,9 +6,22 @@ public class GameLogic {
     private static String underscores;
     private static int lifeCount;
     private static int endingLives;
+    private static String numberOfPlayers;
+
+    public static void chosePlayers() {
+        NumberOfPlayers noOfPlayers = new NumberOfPlayers();
+        System.out.println("Please chose one or two players (One/Two)");
+        Scanner noOfPlayersScanner = new Scanner(System.in);
+
+        noOfPlayers.setNoOfPlayers(noOfPlayersScanner.nextLine().toLowerCase());
+
+        numberOfPlayers = noOfPlayers.getNoOfPlayers();
+        newGame();
+    }
 
 
-    public void choseLevel() {
+
+    public static void choseLevel() {
         System.out.println("What level should you like to play? Easy(E), Medium(M) or Hard(H)");
         Scanner gameLevel = new Scanner(System.in);
         String chosenLevel = gameLevel.nextLine().toLowerCase();
@@ -16,15 +29,15 @@ public class GameLogic {
         switch (chosenLevel) {
             case "e":
                 lifeCount = 10;
-                newGame();
+                chosePlayers();
                 break;
             case "m":
                 lifeCount = 7;
-                newGame();
+                chosePlayers();
                 break;
             case "h":
                 lifeCount = 4;
-                newGame();
+                chosePlayers();
                 break;
             default:
                 System.out.println("That is not an optional level");
@@ -33,26 +46,39 @@ public class GameLogic {
     }
 
     public static void newGame() {
-        WordSelector chosenWord = new WordSelector();
+// if one player a word is randomly selected, if two player, player 1 choses word.
+        if (numberOfPlayers.equals("one")) {
+            WordSelector chosenWord = new WordSelector();
 
-        chosenWord.setWord();
-        chosenWord.setUnderscores();
+            chosenWord.setWord();
+            chosenWord.setUnderscores();
 
-        word = chosenWord.getWord();
-        underscores = chosenWord.getUnderscores();
-        endingLives = lifeCount;
-        gameStart();
-    }
+            word = chosenWord.getWord();
+            underscores = chosenWord.getUnderscores();
+            endingLives = lifeCount;
+            gameLogic();
+        } else if (numberOfPlayers.equals("two")) {
+            WordSelector chosenWord = new WordSelector();
+            System.out.println("Player One, please type your selected word below:");
+            Scanner playerSelectedWord = new Scanner(System.in);
 
+            chosenWord.setPlayerSelectedWord(playerSelectedWord.nextLine());
+            chosenWord.setUnderscores();
 
-
-    public static void gameStart() {
-        GameStatus.gameStart(word, lifeCount, underscores);
-        gameLogic();
+            word = chosenWord.getWord();
+            underscores = chosenWord.getUnderscores();
+            endingLives = lifeCount;
+            gameLogic();
+        } else {
+            System.out.println();
+            System.out.println("Number of players not available, please try again.");
+            chosePlayers();
+        }
     }
 
 
     public static void gameLogic( ) {
+        GameStatus.gameStart(word, lifeCount, underscores);
         AllLettersGuessed allLettersGuessed = new AllLettersGuessed();
 
         while(true) {
@@ -62,6 +88,7 @@ public class GameLogic {
             String userInput = userInputs.nextLine().toLowerCase();
             char userGuess = userInput.charAt(0);
 
+            // checking user input.
         if (userInput.length() != 1){
             System.out.println("Please only type one letter");
             System.out.println();
@@ -104,7 +131,7 @@ public class GameLogic {
                     userInput = playAgain.nextLine().toLowerCase();
 
                     if (userInput.equals("y")) {
-                        newGame();
+                        choseLevel();
                     } else if (userInput.equals("n")){
                         System.out.println("Thank you for playing, see you soon!");
                         break;
@@ -125,7 +152,7 @@ public class GameLogic {
                     System.out.println("You have " + endingLives + " ♥"+ "'s remaining.");
                     System.out.println();
                 } else {
-                    GameStatus.allLivesLost();
+                    GameStatus.allLivesLost(word);
                     System.out.println();
                     System.out.println("Would you like to play again? (Y/N)");
                     Scanner playAgain = new Scanner(System.in);
@@ -133,7 +160,7 @@ public class GameLogic {
                     userInput = playAgain.nextLine().toLowerCase();
 
                     if(userInput.equals("y")) {
-                        newGame();
+                        choseLevel();
                     } else {
                         System.out.println("Thank you for playing, see you soon!");
                         break;

@@ -3,7 +3,7 @@ import java.util.List;
 public class GameStatus {
 
 public static void gameStart(String word, int lifeCount, String underscores) {
-    System.out.println(word);
+
     System.out.println();
     System.out.println("You have "+ lifeCount + " ♥"+ "'s to start.");
     System.out.println();
@@ -12,9 +12,12 @@ public static void gameStart(String word, int lifeCount, String underscores) {
     System.out.println();
 }
 
-    public static void allLivesLost() {
+
+
+
+    public static void allLivesLost(String word) {
         System.out.println();
-        System.out.println("You lost all your lives, please try again!");
+        System.out.println("You lost all your lives, please try again! The word was " + word + ".");
         System.out.println();
         System.out.println(" \n"
                 + " ------\n"
@@ -26,7 +29,8 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                 + "|      |\n"
                 + "|     / \\\n"
                 + "|    /   \\\n"
-                + "|   /     \\");
+                + "|   /     \\\n"
+                + "| ____________\n");
 
     }
 
@@ -54,7 +58,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|      |\n"
                     + "|     / \\\n"
                     + "|    /   \\\n"
-                    + "|   /     \\"
+                    + "|   /     \\\n"
                     + " ____________\n");
             break;
         case 2:
@@ -68,8 +72,8 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|      |\n"
                     + "|     / \\\n"
                     + "|    /   \\\n"
-                    + "|   /     \\"
-                    + " ____________\n");
+                    + "|   /     \\\n"
+                    + "| ____________\n");
             break;
         case 3:
             System.out.println(" \n"
@@ -82,7 +86,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|      |\n"
                     + "|       \\\n"
                     + "|        \\\n"
-                    + "|         \\"
+                    + "|         \\\n"
                     + " ____________\n");
             break;
         case 4:
@@ -96,7 +100,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + " ____________\n");
             break;
         case 5:
@@ -110,7 +114,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + " ____________\n");
             break;
         case 6:
@@ -124,7 +128,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + " ____________\n");
             break;
         case 7:
@@ -138,7 +142,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + " ____________\n");
             break;
         case 8:
@@ -152,7 +156,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + "____________\n");
             break;
         case 9:
@@ -166,7 +170,7 @@ public static void gameStart(String word, int lifeCount, String underscores) {
                     + "|\n"
                     + "|\n"
                     + "|\n"
-                    + "|"
+                    + "|\n"
                     + "\n");
             break;
         case 10:
