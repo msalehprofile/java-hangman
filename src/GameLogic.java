@@ -89,7 +89,7 @@ public class GameLogic {
             char userGuess = userInput.charAt(0);
 
             // checking user input.
-        if (userInput.length() != 1){
+        if (userInput.length() > 1){
             System.out.println("Please only type one letter");
             System.out.println();
         } else if (userInput.matches(".*[1234567890].*")) {
