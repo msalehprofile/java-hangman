@@ -2,14 +2,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        GameLogic newGame = new GameLogic();
+//        GameLogic newGame = new GameLogic();
 
-        System.out.println("Welcome to Hangman! Would you like to play a game? (Y/N)");
+        System.out.println(" ----------------------------------------------------------");
+        System.out.println("| Welcome to Hangman! Would you like to play a game? (Y/N) |");
+        System.out.println(" ----------------------------------------------------------");
         Scanner playGame = new Scanner(System.in);
         String userInput = playGame.nextLine().toLowerCase();
 
         if ( userInput.equals("y")) {
-            newGame.choseLevel();
+            GameLogic.choseLevel();
+
         } else if (userInput.equals("n")){
             System.out.println("Okay, see you again soon!");
         } else {

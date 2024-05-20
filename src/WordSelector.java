@@ -1,11 +1,12 @@
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class WordSelector {
     private String word;
     private String underscores;
 
-    String[] words = {"Summer", "Short", "Pasta", "Coffee", "Travel", "Plants", "Tumbler", "Jazz", "Jumper", "Vampire"};
+    String[] words = {"Summer", "Short", "Pasta", "Coffee", "Travel", "Plants", "Tumbler", "Jazz", "Jumper", "Vampire", "Sausage", "Telephone", "Apple", "Parrot", "Space"};
 
     public String getWord() {
         return word;
@@ -22,9 +23,13 @@ public class WordSelector {
     }
 
     public void setWord() {
-        int min=0, max=9;
+        int min=0, max=words.length;
         int selectedNumber = (int)(Math.random()*((max-min)+1))+min;
         this.word = words[selectedNumber];
+    }
+
+    public void setPlayerSelectedWord(String word) {
+        this.word = word;
     }
 
 }
