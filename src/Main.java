@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-//        GameLogic newGame = new GameLogic();
 
         System.out.println(" ----------------------------------------------------------");
         System.out.println("| Welcome to Hangman! Would you like to play a game? (Y/N) |");
